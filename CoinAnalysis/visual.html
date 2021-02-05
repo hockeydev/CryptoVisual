@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <style> body { margin: 0; } </style>
+      <script src="//unpkg.com/dat.gui"></script>
+      <script src="//unpkg.com/3d-force-graph"></script>
+      <title>Coin Visuals</title>
+  </head>
+  <body>
+      <div id="3d-graph"></div>
+      <div id= "footer">
+        <footer>Visualisation of all current cryptocurencies and tokens. Powered by <a href="https://github.com/vasturiano/3d-force-graph/blob/master/README.md#data-input">3D-Force-Graph</a> & <a href="https://www.coingecko.com/en/api#explore-api">CoinGecko API</a> <span id="footer-right">Made by <a href="www.hockeydev.co.uk">Hockey Development</a></footer>
+      </div>
+
+        <script>
+
+          // Set Camera Distance and Graph settings
+          const distance = 5500;
+          const Graph = ForceGraph3D({ controlType: 'orbit' })(document.getElementById('3d-graph'))
+            .jsonUrl(['../data/cgdata.json'])
+            .nodeAutoColorBy('name')
+            .nodeRelSize(1)
+            .linkColor(link => link.color ? 'black' : 'white' )
+            .linkOpacity(0.25)
+            .backgroundColor('black')
+            // .linkAutoColorBy('source')
+
+
+            // create link controls and GUI settings
+                  const linkForce = Graph
+                    .d3Force('link')
+                    .distance(link => link.color ? settings.xDistance : settings.yDistance);
+
+                  //Define GUI
+                  const Settings = function() {
+                    this.xDistance = 40;
+                    this.yDistance = 40;
+                  };
+
+                  const settings = new Settings();
+                  const gui = new dat.GUI();
+
+                  const controllerOne = gui.add(settings, 'xDistance', 0, 100);
+                  const controllerTwo = gui.add(settings, 'yDistance', 0, 100);
+
+                  controllerOne.onChange(updateLinkDistance);
+                  controllerTwo.onChange(updateLinkDistance);
+
+                  function updateLinkDistance() {
+                    linkForce.distance(link => link.color ? settings.xDistance : settings.yDistance);
+                    Graph.numDimensions(3); // Re-heat simulation
+                  }
+
+
+              //  Animate camera and create movement
+              let angle = 0;
+              setInterval(() => {
+                Graph.cameraPosition({
+                  x: distance * Math.sin(angle),
+                  z: distance * Math.cos(angle)
+                });
+                angle += Math.PI / 300;
+              }, 10);
+
+
+          // Reset graph to fit to canvas once loaded
+          Graph.onEngineStop(() => Graph.zoomToFit(400));
+      </script>
+  </body>
+</html>
