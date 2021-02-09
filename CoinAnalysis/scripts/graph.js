@@ -22,14 +22,14 @@ const Graph = ForceGraph3D({ controlType: 'orbit' })(document.getElementById('3d
          }
        }, 10);
 
-       // Toggle Rotation DOM Settings
-     document.getElementById('rotationToggle').addEventListener('click', event => {
-         isRotationActive = !isRotationActive;
-         event.target.innerHTML = `${(isRotationActive ? 'Pause' : 'Resume')} Rotation`;
-       });
+        // Toggle Rotation DOM Settings
+        document.getElementById('rotationToggle').addEventListener('click', event => {
+            isRotationActive = !isRotationActive;
+            event.target.innerHTML = `${(isRotationActive ? 'Pause' : 'Resume')} Rotation`;
+          });
 
 
-  // create link controls and GUI settings
+        // create link controls and GUI settings
         const linkForce = Graph
           .d3Force('link')
           .distance(link => link.color ? settings.xDistance : settings.yDistance);

@@ -6,6 +6,9 @@
       <script src="//unpkg.com/3d-force-graph"></script>
       <script src="//unpkg.com/dat.gui"></script>
       <script type="module" src="scripts/graph.js" async></script>
+      <link rel="stylesheet" href="resources/style.css"> 
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet"> 
       <title>Coin Visuals</title>
       <link rel="shortcut icon" type="image/jpg"href="resources/favicon.ico">
   </head>
@@ -16,10 +19,26 @@
             Pause Rotation
         </button>
       </div>
+
+      <div class="intro"> 
+        <div class="intro-text">
+            <h1 class="hide">
+                <span class="text">Cryptocurrency Analysis</span>
+            </h1>
+        </div>
+    </div>
+    <div class="cover"></div>
+
       <div id= "footer">
-        <footer>Visualisation of all current cryptocurrencies and tokens. Powered by <a href="https://github.com/vasturiano/3d-force-graph/blob/master/README.md#data-input">3D-Force-Graph</a> & <a href="https://www.coingecko.com/en/api#explore-api">CoinGecko API</a> <span id="footer-right">Made by <a href="www.hockeydev.co.uk">Hockey Development</a></footer>
+        <footer style="font-family: Arial;">Visualisation of all current cryptocurrencies and tokens. Powered by <a href="https://github.com/vasturiano/3d-force-graph/blob/master/README.md#data-input">3D-Force-Graph</a> & <a href="https://www.coingecko.com/en/api#explore-api">CoinGecko API</a> <span id="footer-right">Made by <a href="www.hockeydev.co.uk">Hockey Development</a></footer>
       </div>
 
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"
+      integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ=="
+      crossorigin="anonymous"
+      ></script>
+      <script src="scripts/app.js"></script>
         <script  type="module" async>
       </script>
   </body>
